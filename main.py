@@ -37,8 +37,8 @@ def save_photos_spacex(url_pic_spacex):
     filename = "picture_spacex"
     for url_number, url in enumerate(url_pic_spacex):
         response = requests.get(f"{url}", verify=False)
-        extansion = os.path.splitext(url)[-1]
-        with open(f"images/{filename}{url_number}{extansion}", 'wb') as file:
+        extension = os.path.splitext(url)[-1]
+        with open(f"images/{filename}{url_number}{extension}", 'wb') as file:
             file.write(response.content)
 
 def get_url_pic_spacex():
@@ -52,8 +52,8 @@ def save_photos_hubble(url_pic_hubble):
     filename = "picture_hubble"
     for url_number, url in enumerate(url_pic_hubble):
         response = requests.get(f"http:{url}", verify=False)
-        extansion = os.path.splitext(url)[-1]
-        with open(f"images/{filename}{url_number}{extansion}", 'wb') as file:
+        extension = os.path.splitext(url)[-1]
+        with open(f"images/{filename}{url_number}{extension}", 'wb') as file:
             file.write(response.content)
 
 
