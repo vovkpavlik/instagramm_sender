@@ -1,5 +1,4 @@
 requests==2.25.1
 environs==9.3.0
-pillow==8.0.1
 instabot==0.117.0
 urllib3==1.26.2
