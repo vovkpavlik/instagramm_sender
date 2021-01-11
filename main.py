@@ -8,21 +8,19 @@ from hubble import save_hubble_photos, get_hubble_urls, get_image_ids
 from spacex import save_spacex_photos, get_spacex_urls
 
 
-def upload_photos():
+def upload_photos(inst_folder):
     bot = Bot()
     bot.login(username=inst_username, password=inst_password)
-    directory = inst_folder
-    pics = os.listdir(directory)
+    pics = os.listdir(inst_folder)
     for pic in pics:
-        bot.upload_photo(f"{directory}/{pic}")
-        os.remove(f"{directory}/{pic}.REMOVE_ME")
+        bot.upload_photo(f"{inst_folder}/{pic}")
+        os.remove(f"{inst_folder}/{pic}.REMOVE_ME")
 
 
-def convert_photos():
-    directory = all_folder
-    pics = os.listdir(directory)
+def convert_photos(all_folder):
+    pics = os.listdir(all_folder)
     for pic_number, pic in enumerate(pics):
-        image = Image.open(f"{directory}/{pic}")
+        image = Image.open(f"{all_folder}/{pic}")
         rgb_image = image.convert("RGB")
         rgb_image.thumbnail((1080, 1080))
         rgb_image.save(f"img to inst/{pic_number}.jpg", format="JPEG")
@@ -48,5 +46,5 @@ if __name__ == "__main__":
 
     save_hubble_photos(image_urls)
     save_spacex_photos(get_spacex_urls())
-    convert_photos()
-    upload_photos()
+    convert_photos(all_folder)
+    upload_photos(inst_folder)
