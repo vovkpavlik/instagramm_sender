@@ -6,6 +6,7 @@ def save_hubble_photos(hubble_pics_url):
     filename = "picture_hubble"
     for url_number, url in enumerate(hubble_pics_url):
         response = requests.get(f"http:{url}", verify=False)
+        response.raise_for_status()
         extension = os.path.splitext(url)[-1]
         with open(f"images/{filename}{url_number}{extension}", 'wb') as file:
             file.write(response.content)
@@ -16,6 +17,7 @@ def get_hubble_urls(image_ids):
     image_urls = []
     for pic_id in image_ids:
         response = requests.get(f"{hubble_url}/image/{pic_id}")
+        response.raise_for_status()
         image_urls.append(response.json()["image_files"][-1]["file_url"])
     return image_urls
 

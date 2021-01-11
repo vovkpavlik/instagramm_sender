@@ -30,7 +30,7 @@ def convert_photos():
 
 if __name__ == "__main__":
     all_folder = "images"
-    inst_folder = "images_to_inst"
+    inst_folder = "images to inst"
 
     os.makedirs(all_folder, exist_ok=True)
     os.makedirs(inst_folder, exist_ok=True)
