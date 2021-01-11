@@ -15,8 +15,8 @@ ___________________________
 5. Зарегистрироваться/войти в свой аккаунт на сайте [https://www.instagram.com](https://www.instagram.com).
 6. Создать проект в [_PyCharm_](https://www.jetbrains.com/pycharm/) или в ином интерпретаторе и создать файл `.env`. Внести в этот файл:
     ```
-    USERNAME = Ваш login к инстаграм
-    PASSWORD = Ваш password к инстаграм
+    USERNAME_INST=Ваш login к инстаграм
+    PASSWORD_INST=Ваш password к инстаграм
    ``` 
 7. Установить необходимые модули с помощью консольной команды:
 ```
