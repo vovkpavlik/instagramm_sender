@@ -2,9 +2,9 @@ import os
 import requests
 
 
-def save_spacex_photos(url_pic_spacex):
+def save_spacex_photos(spacex_pics_url):
     filename = "picture_spacex"
-    for url_number, url in enumerate(url_pic_spacex):
+    for url_number, url in enumerate(spacex_pics_url):
         response = requests.get(f"{url}", verify=False)
         extension = os.path.splitext(url)[-1]
         with open(f"images/{filename}{url_number}{extension}", 'wb') as file:

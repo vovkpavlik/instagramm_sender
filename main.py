@@ -10,7 +10,7 @@ from spacex import save_spacex_photos, get_spacex_urls
 
 def upload_photos():
     bot = Bot()
-    bot.login(username=username_inst, password=password_inst)
+    bot.login(username=inst_username, password=inst_password)
     directory = inst_folder
     pics = os.listdir(directory)
     for pic in pics:
@@ -40,8 +40,8 @@ if __name__ == "__main__":
     env = Env()
     env.read_env()
 
-    username_inst = env.str("USERNAME_INST")
-    password_inst = env.str("PASSWORD_INST")
+    inst_username = env.str("INST_USERNAME")
+    inst_password = env.str("INST_PASSWORD")
 
     image_ids = get_image_ids()
     image_urls = get_hubble_urls(image_ids)
