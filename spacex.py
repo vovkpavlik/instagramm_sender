@@ -1,19 +1,8 @@
-import os
 import requests
 
 
-def save_spacex_photos(spacex_pics_url):
-    filename = "picture_spacex"
-    for url_number, url in enumerate(spacex_pics_url):
-        response = requests.get(f"{url}", verify=False)
-        response.raise_for_status()
-        extension = os.path.splitext(url)[-1]
-        with open(f"images/{filename}{url_number}{extension}", 'wb') as file:
-            file.write(response.content)
-
-
 def get_spacex_urls():
-    url = "https://api.spacexdata.com/v4/"
-    response = requests.get(f"{url}launches/latest")
+    url = "https://api.spacexdata.com/v4"
+    response = requests.get(f"{url}/launches/latest")
     response.raise_for_status()
     return response.json()["links"]["flickr"]["original"]

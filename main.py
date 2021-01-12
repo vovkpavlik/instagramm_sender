@@ -4,8 +4,9 @@ from PIL import Image
 from instabot import Bot
 from environs import Env
 
-from hubble import save_hubble_photos, get_hubble_urls, get_image_ids
-from spacex import save_spacex_photos, get_spacex_urls
+from utils import save_photos
+from spacex import get_spacex_urls
+from hubble import get_hubble_ids, get_hubble_urls
 
 
 def upload_photos(inst_folder):
@@ -28,7 +29,7 @@ def convert_photos(all_folder):
 
 if __name__ == "__main__":
     all_folder = "images"
-    inst_folder = "images to inst"
+    inst_folder = "img to inst"
 
     os.makedirs(all_folder, exist_ok=True)
     os.makedirs(inst_folder, exist_ok=True)
@@ -41,10 +42,11 @@ if __name__ == "__main__":
     inst_username = env.str("INST_USERNAME")
     inst_password = env.str("INST_PASSWORD")
 
-    image_ids = get_image_ids()
-    image_urls = get_hubble_urls(image_ids)
+    hubble_ids = get_hubble_ids()
+    hubble_urls = get_hubble_urls(hubble_ids)
 
-    save_hubble_photos(image_urls)
-    save_spacex_photos(get_spacex_urls())
+    save_photos(hubble_urls, "hubble")
+    save_photos(get_spacex_urls(), "spacex")
+
     convert_photos(all_folder)
     upload_photos(inst_folder)
