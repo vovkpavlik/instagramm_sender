@@ -15,8 +15,5 @@ def get_hubble_ids():
     hubble_url = "http://hubblesite.org/api/v3"
     response = requests.get(f"{hubble_url}/images/holiday_cards")
     response.raise_for_status()
-    picture_ids = []
-    for pic in response.json():
-        image_id = pic["id"]
-        picture_ids.append(image_id)
+    picture_ids = [pic["id"] for pic in response.json()]
     return picture_ids
