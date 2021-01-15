@@ -14,8 +14,11 @@ def upload_photos(inst_images, username, password):
     bot.login(username=username, password=password)
     pics = os.listdir(inst_images)
     for pic in pics:
-        bot.upload_photo(f"{inst_images}/{pic}")
-        os.remove(f"{inst_images}/{pic}.REMOVE_ME")
+        try:
+            bot.upload_photo(f"{inst_images}/{pic}")
+            os.remove(f"{inst_images}/{pic}.REMOVE_ME")
+        except FileNotFoundError:
+            os.remove(f"{inst_images}/{pic}")
 
 
 def convert_photos(all_folder, inst_images):
