@@ -9,30 +9,30 @@ from spacex import get_spacex_urls
 from hubble import get_hubble_ids, get_hubble_urls
 
 
-def upload_photos(inst_folder, username, password):
+def upload_photos(inst_images, username, password):
     bot = Bot()
     bot.login(username=username, password=password)
-    pics = os.listdir(inst_folder)
+    pics = os.listdir(inst_images)
     for pic in pics:
-        bot.upload_photo(f"{inst_folder}/{pic}")
-        os.remove(f"{inst_folder}/{pic}.REMOVE_ME")
+        bot.upload_photo(f"{inst_images}/{pic}")
+        os.remove(f"{inst_images}/{pic}.REMOVE_ME")
 
 
-def convert_photos(all_folder, inst_folder):
+def convert_photos(all_folder, inst_images):
     pics = os.listdir(all_folder)
     for pic_number, pic in enumerate(pics):
         image = Image.open(f"{all_folder}/{pic}")
         rgb_image = image.convert("RGB")
         rgb_image.thumbnail((1080, 1080))
-        rgb_image.save(f"{inst_folder}/{pic_number}.jpg", format="JPEG")
+        rgb_image.save(f"{inst_images}/{pic_number}.jpg", format="JPEG")
 
 
 if __name__ == "__main__":
-    all_folder = "images"
-    inst_folder = "img to inst"
+    all_images = "images"
+    inst_images = "img to inst"
 
-    os.makedirs(all_folder, exist_ok=True)
-    os.makedirs(inst_folder, exist_ok=True)
+    os.makedirs(all_images, exist_ok=True)
+    os.makedirs(inst_images, exist_ok=True)
 
     urllib3.disable_warnings()
 
@@ -45,8 +45,8 @@ if __name__ == "__main__":
     hubble_ids = get_hubble_ids()
     hubble_urls = get_hubble_urls(hubble_ids)
 
-    save_photos(hubble_urls, "hubble", all_folder)
-    save_photos(get_spacex_urls(), "spacex", all_folder)
+    save_photos(hubble_urls, "hubble", all_images)
+    save_photos(get_spacex_urls(), "spacex", all_images)
 
-    convert_photos(all_folder, inst_folder)
-    upload_photos(inst_folder, inst_username, inst_password)
+    convert_photos(all_images, inst_images)
+    upload_photos(inst_images, inst_username, inst_password)
